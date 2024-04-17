@@ -9,7 +9,8 @@ import MainPageStats from '@/components/MainPage/MainPageStats.vue'
 import MainLayout from '@/Layout/MainLayout.vue'
 import MainSectionLayout from '@/Layout/MainSectionLayout.vue'
 import { products, questions } from '@/mockdata'
-import { ref } from 'vue'
+import { useAuthStore } from '@/stores/auth'
+import { onMounted, ref } from 'vue'
 
 export interface IArticle {
   id: number,
@@ -197,10 +198,25 @@ const articles = ref<IArticle[]>([
   }
 ])
 
+const authStore = useAuthStore()
+const isLoading = ref<boolean>(false)
+
+onMounted(async () => {
+  try {
+    isLoading.value = true
+    await authStore.getIsAuth()
+    isLoading.value = false
+  } catch (e) {
+    isLoading.value = false
+    console.log(e)
+
+  }
+})
+
 </script>
 
 <template>
-  <MainLayout>
+  <MainLayout v-if='!isLoading'>
     <Header />
     <HeroSection />
     <MainPageStats />
@@ -223,5 +239,27 @@ const articles = ref<IArticle[]>([
     </MainSectionLayout>
 
     <Footer />
+  </MainLayout>
+  <MainLayout v-else>
+    <div class='h-screen flex items-center justify-center '>
+      <div class='h-48 w-48'>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <radialGradient id="a11" cx=".66" fx=".66" cy=".3125" fy=".3125" gradientTransform="scale(1.5)">
+            <stop offset="0" stop-color="#3E3E3E"></stop>
+            <stop offset=".3" stop-color="#3E3E3E" stop-opacity=".9"></stop>
+            <stop offset=".6" stop-color="#3E3E3E" stop-opacity=".6"></stop>
+            <stop offset=".8" stop-color="#3E3E3E" stop-opacity=".3"></stop>
+            <stop offset="1" stop-color="#3E3E3E" stop-opacity="0"></stop>
+          </radialGradient>
+          <circle transform-origin="center" fill="none" stroke="url(#a11)" stroke-width="26" stroke-linecap="round"
+            stroke-dasharray="200 1000" stroke-dashoffset="0" cx="100" cy="100" r="70">
+            <animateTransform type="rotate" attributeName="transform" calcMode="spline" dur="2" values="360;0"
+              keyTimes="0;1" keySplines="0 0 1 1" repeatCount="indefinite"></animateTransform>
+          </circle>
+          <circle transform-origin="center" fill="none" opacity=".2" stroke="#3E3E3E" stroke-width="26"
+            stroke-linecap="round" cx="100" cy="100" r="70"></circle>
+        </svg>
+      </div>
+    </div>
   </MainLayout>
 </template>
