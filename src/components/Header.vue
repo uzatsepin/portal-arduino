@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { Avatar, AvatarImage } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
   Dialog,
@@ -34,7 +34,7 @@ interface IRegData {
   first_name: string,
   last_name: string,
   is_seller: boolean,
-  avatar: string | null | number,
+  avatar_url: string | null | number,
 }
 
 interface InputFileEvent extends Event {
@@ -52,7 +52,7 @@ const regData = ref<IRegData>({
   first_name: '',
   last_name: '',
   is_seller: false,
-  avatar: '',
+  avatar_url: '',
 })
 
 const authStore = useAuthStore()
@@ -97,11 +97,13 @@ async function signUpNewUser() {
           first_name: regData.value.first_name,
           last_name: regData.value.last_name,
           is_seller: regData.value.is_seller,
-          avatar: regData.value.avatar,
+          avatar_url: regData.value.avatar_url,
           rating: null,
         }
       }
     })
+    console.log(data)
+
     if (error) {
       isLoading.value = false
       toast({
@@ -124,16 +126,24 @@ async function signUpNewUser() {
 
 async function signOut() {
   await supabase.auth.signOut().then(() => {
+
     toast({
       title: 'Success',
       description: 'Вихід успішний',
     })
+
+    setTimeout(() => {
+      window.location.reload()
+    }, 2000)
+
   }).catch((error) => {
+
     toast({
       title: 'Error',
       description: error.message,
       variant: 'destructive'
     })
+
   })
 }
 
@@ -154,7 +164,7 @@ async function uploadFile(file: any) {
       title: 'Завантажено',
       description: 'Аватар успішно завантажено',
     })
-    regData.value.avatar = link + data.path
+    regData.value.avatar_url = link + data.path
   }
 }
 
@@ -299,8 +309,10 @@ async function uploadFile(file: any) {
       <DropdownMenu>
         <DropdownMenuTrigger class='flex items-start gap-4'>
           <Avatar class='w-12 h-12'>
-            <AvatarImage :src='userData?.user_metadata.avatar'>
+            <AvatarImage :src='userData?.user_metadata.avatar_url' v-if='userData?.user_metadata.avatar_url'>
             </AvatarImage>
+            <AvatarFallback v-else>{{ userData?.user_metadata.first_name[0] }}{{ userData?.user_metadata.last_name[0]
+              }}</AvatarFallback>
           </Avatar>
           <div class='flex flex-col gap-1 items-start'>
             <div class='text-muted-foreground text-sm'>{{ userData?.user_metadata.first_name }} {{
@@ -320,7 +332,9 @@ async function uploadFile(file: any) {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Icon icon="mdi:account" class='h-5 w-5 mr-2' />Мій аккаунт
+            <RouterLink :to="{ name: 'Dashboard', params: { id: userData?.id } }" class=flex>
+              <Icon icon="mdi:account" class='h-5 w-5 mr-2' />Мій аккаунт
+            </RouterLink>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Icon icon="material-symbols:article" class='h-5 w-5 mr-2' />Мої статті
@@ -329,7 +343,7 @@ async function uploadFile(file: any) {
             <Icon icon="mingcute:chip-fill" class='h-5 w-5 mr-2' />
             Мої товари
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem @click="signOut">
             <Icon icon="mingcute:exit-line" class='h-5 w-5 mr-2' />
             Вихід
           </DropdownMenuItem>

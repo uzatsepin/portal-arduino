@@ -723,10 +723,10 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.10.2.tgz#053f1540703faa81dea2966b768ee5581c66aeda"
   integrity sha512-hw437iINopmQuxWPSUEvqE56NCPsiU8N4AYtfHmJFckclktzK9YQJieD3XkDCDH4OjL+C7zgPUh73R/nrcHrqw==
 
-"@supabase/auth-js@2.63.0":
-  version "2.63.0"
-  resolved "https://registry.yarnpkg.com/@supabase/auth-js/-/auth-js-2.63.0.tgz#41ff746a50a916208c1f2c6898deacf92c6d0b91"
-  integrity sha512-yIgcHnlgv24GxHtVGUhwGqAFDyJkPIC/xjx7HostN08A8yCy8HIfl4JEkTKyBqD1v1L05jNEJOUke4Lf4O1+Qg==
+"@supabase/auth-js@2.63.1":
+  version "2.63.1"
+  resolved "https://registry.yarnpkg.com/@supabase/auth-js/-/auth-js-2.63.1.tgz#1d6178256d1502ae5c4707e4e18baa8fb119799e"
+  integrity sha512-iwdmIc/w5QN7aMfYThEgUt1l2i0KuohZ4XNk1adECg0LETQYEzmbVToKFKZLLZ+GyNtpsExSgVY/AUWOwubGXA==
   dependencies:
     "@supabase/node-fetch" "^2.6.14"
 
@@ -768,12 +768,12 @@
   dependencies:
     "@supabase/node-fetch" "^2.6.14"
 
-"@supabase/supabase-js@^2.42.4":
-  version "2.42.4"
-  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-2.42.4.tgz#1d0cdf8f8d3a1832a74fbf7e5b0ecc148a5a984c"
-  integrity sha512-tRn3wloKnnFdmEr3O2VIaxqzKACpyJ3ymLDmeq0V5lvhkJ+B4VH+QmDrnBbJJUkO2t+IHg65j5jombZxU4yMyw==
+"@supabase/supabase-js@^2.42.5":
+  version "2.42.5"
+  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-2.42.5.tgz#e062259ab71e060a3eda09f2e77e4185d43a47ac"
+  integrity sha512-T/FlVmNHR/MDl8KhmNLb94dh+cTpqyvFlNI/Zd97dwS1yCm59xM+sTzmQLKnGNY5sPuwp40/w52bWrczdjOYtA==
   dependencies:
-    "@supabase/auth-js" "2.63.0"
+    "@supabase/auth-js" "2.63.1"
     "@supabase/functions-js" "2.3.0"
     "@supabase/node-fetch" "2.6.15"
     "@supabase/postgrest-js" "1.15.2"
@@ -1446,6 +1446,11 @@ csstype@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
+
+dayjs@^1.11.10:
+  version "1.11.10"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.10.tgz#68acea85317a6e164457d6d6947564029a6a16a0"
+  integrity sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==
 
 de-indent@^1.0.2:
   version "1.0.2"

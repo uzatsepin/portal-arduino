@@ -18,7 +18,7 @@ export interface IProducts {
   seller: {
     id: number
     name: string
-    rating: number
+    rating: string | null
   }
 }
 
@@ -42,7 +42,7 @@ export const products: IProducts[] = [
     seller: {
       id: 1,
       name: 'Ардуино',
-      rating: 4.5
+      rating: '4.5'
     }
   },
   {
@@ -57,7 +57,7 @@ export const products: IProducts[] = [
     seller: {
       id: 1,
       name: 'Ардуино',
-      rating: 4.5
+      rating: '4.5'
     }
   },
   {
@@ -72,7 +72,7 @@ export const products: IProducts[] = [
     seller: {
       id: 1,
       name: 'Ардуино',
-      rating: 4.5
+      rating: '4.5'
     }
   },
   {
@@ -87,7 +87,7 @@ export const products: IProducts[] = [
     seller: {
       id: 1,
       name: 'Ардуино',
-      rating: 4.5
+      rating: '4.5'
     }
   },
   {
@@ -102,7 +102,7 @@ export const products: IProducts[] = [
     seller: {
       id: 1,
       name: 'Ардуино',
-      rating: 4.5
+      rating: '4.5'
     }
   },
   {
@@ -117,7 +117,7 @@ export const products: IProducts[] = [
     seller: {
       id: 1,
       name: 'Ардуино',
-      rating: 4.5
+      rating: '4.5'
     }
   }
 ]

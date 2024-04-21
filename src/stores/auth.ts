@@ -8,11 +8,13 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function getIsAuth() {
     const response = await supabase.auth.getUser()
+
     if (response.data.user) {
       authData.value = response.data.user
-      console.log(response.data.user)
     }
   }
+
+  getIsAuth()
 
   return { authData, getIsAuth }
 })

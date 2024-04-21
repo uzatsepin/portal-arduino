@@ -4,7 +4,7 @@ export interface IAppMetadata {
 }
 
 export interface IUserMetadata {
-  avatar: string
+  avatar_url: string
   email: string
   email_verified: boolean
   first_name: string
@@ -15,7 +15,7 @@ export interface IUserMetadata {
 }
 
 export interface IdentityData extends IUserMetadata {
-  rating: number | null
+  rating: string | null
 }
 
 export interface Identity {
@@ -45,4 +45,28 @@ export interface IUserData {
   created_at: string
   updated_at: string
   is_anonymous: boolean
+}
+
+export interface IAuthor {
+  avatar_url: string
+  created_at: string
+  email: string
+  first_name: string
+  id: string
+  is_seller: boolean
+  last_name: string
+  rating: number | null
+}
+
+export interface IArticle {
+  category: string
+  created_at: string
+  full_text: string
+  id: string
+  image: string
+  short_descr: string
+  title: string
+  views: number
+  comments: number
+  author: IAuthor
 }

@@ -14,10 +14,11 @@
   },
   "dependencies": {
     "@radix-icons/vue": "^1.0.0",
-    "@supabase/supabase-js": "^2.42.4",
+    "@supabase/supabase-js": "^2.42.5",
     "@vueuse/core": "^10.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "dayjs": "^1.11.10",
     "pinia": "^2.1.7",
     "radix-vue": "^1.7.0",
     "tailwind-merge": "^2.2.2",
